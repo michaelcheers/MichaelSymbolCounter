@@ -97,8 +97,11 @@ namespace MichaelSymbolCounter
                     int newOutcome;
                     if (shape.Count == 0)
                         newOutcome = testState.NextChoice(firstTimeRange);
+                    else if (shape.Count == 1)
+                        newOutcome = testState.NextChoice(new ChoiceRange_Bits(remainingBits & ~1));
                     else
                         newOutcome = testState.NextChoice(new ChoiceRange_Bits(remainingBits));
+
                     if(newOutcome == 1)
                     {
                         // bit 1 means stop and report the shape
